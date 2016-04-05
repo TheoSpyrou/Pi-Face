@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="PiFace.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PiFace"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="SteelBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Viewbox>
+            <StackPanel>
+                <TextBlock Text="Pi Face" FontSize="70" Foreground="White" Margin="0,20,0,40" HorizontalAlignment="Center"/>
+                <TextBlock Text="Preview" FontSize="24" Foreground="White" HorizontalAlignment="Center"/>
+                <Canvas Background="Gray" Height="300" Width="400" Margin="0,10,0,50">
+                    <CaptureElement x:Name="camPreview" Width="400" Height="300"/>
+                    <Canvas x:Name="facesCanvas" Width="400" Height="300" Background="Transparent"/>
+                </Canvas>
+                <StackPanel HorizontalAlignment="Center" Margin="0,0,20,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Viewbox MaxHeight="50" Margin="20, 0, 0, 0">
+                            <ToggleSwitch x:Name="camStateToggle" RequestedTheme="Dark" OffContent="Camera Off" OnContent="Camera On" Toggled="camStateToggle_Toggled"/>
+                        </Viewbox>
+                        <Viewbox Margin="25,0,0,0" MaxHeight="100">
+                            <AppBarButton x:Name="takePhotoBtn" Label="Take Photo" Icon="Camera" IsEnabled="False" RequestedTheme="Dark" Click="TakePhotoBtn_Click"/>
+                        </Viewbox>
+                        <Viewbox MaxHeight="30" MaxWidth="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
+                            <ProgressRing x:Name="progress" RequestedTheme="Dark"/>
+                        </Viewbox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Height="30" Margin="20">
+            <TextBlock x:Name="log" Foreground="White"  TextWrapping="WrapWholeWords"/>
+        </Viewbox>
+    </Grid>
+</Page>
